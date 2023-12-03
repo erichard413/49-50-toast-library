@@ -70,8 +70,9 @@ body {
   top: 30vh;
   background-color: teal;
   border-radius: 10px;
-  height: 400px;
-  width: 500px;
+  height: auto;
+  width: 300px;
+  padding: 50px;
 }
 
 .ToastForm form input ~ label {

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import "./styles/styles.css";
 import { useToasts } from "./hooks/useContext";
 import { useToastsDispatch } from "./hooks/useContext";
@@ -39,11 +39,7 @@ function App() {
           {toasts
             ?.filter(t => t.position == pos)
             .map(toast => (
-              <ToastMessage
-                key={toast.id}
-                id={toast.id}
-                message={toast.message}
-              />
+              <ToastMessage key={toast.id} {...toast} />
             ))}
         </ToastContainer>
       ))}
@@ -55,11 +51,19 @@ function ToastContainer({ location, children }) {
   return <div className={`toast-container ${location}`}>{children}</div>;
 }
 
-function ToastMessage({ id, message }) {
+function ToastMessage({ id, message, autoDismiss, autoDismissTimeout }) {
   const dispatch = useToastsDispatch();
+  const toasts = useToasts();
   const removeToast = id => {
     return dispatch({ type: ACTIONS.DELETE, payload: id });
   };
+
+  if (autoDismiss) {
+    setTimeout(() => {
+      removeToast(id);
+    }, autoDismissTimeout * 1000);
+  }
+  console.log(id, message, autoDismiss, autoDismissTimeout);
   return (
     <div className="toast" onClick={() => removeToast(id)}>
       {message}
