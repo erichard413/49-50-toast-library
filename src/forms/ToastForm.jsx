@@ -21,13 +21,14 @@ export default function ToastForm({ closeForm }) {
   const initialFormData = {
     message: "",
     autoDismiss: false,
-    autoDismissTimeout: 0,
+    autoDismissTimeout: "0",
     position: "top-left",
   };
   const [formData, setFormData] = useState(initialFormData);
 
   function handleChange(e) {
     let { name, value } = e.target;
+
     if (name == "autoDismissTimeout") value = parseInt(value);
 
     if (name == "autoDismiss") {
@@ -44,6 +45,8 @@ export default function ToastForm({ closeForm }) {
       ...formData,
     };
     dispatch({ type: ACTIONS.ADD, payload: newToast });
+    setFormData(initialFormData);
+    closeForm();
   }
 
   return (
@@ -82,9 +85,9 @@ export default function ToastForm({ closeForm }) {
               type="number"
               name="autoDismissTimeout"
               id="autoDismissTimeout"
+              min="0"
               onChange={handleChange}
-              defaultValue={0}
-              number={formData.autoDismissTimeout}
+              value={formData.autoDismissTimeout}
             />
           </>
         )}

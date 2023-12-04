@@ -6,6 +6,7 @@ import { ACTIONS } from "./hooks/useContext";
 import ToastForm from "./forms/ToastForm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import toastleo from "./assets/toastleo.png";
 
 function App() {
   const [formOpen, setFormOpen] = useState(false);
@@ -29,8 +30,19 @@ function App() {
       {formOpen ? (
         <ToastForm closeForm={toggleFormOpen} />
       ) : (
-        <button className="open-form-btn" onClick={toggleFormOpen}>
-          <FontAwesomeIcon icon={faPenToSquare} />
+        <button
+          className="open-form-btn"
+          data-testid="open-form-btn"
+          onClick={toggleFormOpen}
+        >
+          <div>
+            <div>
+              <img src={toastleo} alt="leo" />
+            </div>
+            <div>
+              <p>Add a Toast!</p>
+            </div>
+          </div>
         </button>
       )}
 
@@ -48,7 +60,11 @@ function App() {
 }
 
 function ToastContainer({ location, children }) {
-  return <div className={`toast-container ${location}`}>{children}</div>;
+  return (
+    <div data-testid={location} className={`toast-container ${location}`}>
+      {children}
+    </div>
+  );
 }
 
 function ToastMessage({ id, message, autoDismiss, autoDismissTimeout }) {
@@ -63,7 +79,7 @@ function ToastMessage({ id, message, autoDismiss, autoDismissTimeout }) {
       removeToast(id);
     }, autoDismissTimeout * 1000);
   }
-  console.log(id, message, autoDismiss, autoDismissTimeout);
+
   return (
     <div className="toast" onClick={() => removeToast(id)}>
       {message}

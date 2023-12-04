@@ -9,9 +9,16 @@
 }
 
 body {
-  background: #333;
+  background-image: url("../assets/bgpage.png");
+  background-size: cover;
+  background-position: left;
   min-height: 100vh;
   margin: 0;
+  font-family: "Ephesis", cursive;
+}
+
+p {
+  font-family: "Ephesis", cursive;
 }
 
 .toast {
@@ -68,11 +75,20 @@ body {
   position: relative;
   margin: auto;
   top: 30vh;
-  background-color: teal;
   border-radius: 10px;
   height: auto;
   width: 300px;
   padding: 50px;
+  background: rgb(135, 134, 134);
+  background: radial-gradient(
+    circle,
+    rgba(135, 134, 134, 1) 0%,
+    rgba(193, 150, 18, 0.4374124649859944) 100%
+  );
+  border: 2px solid rgb(133, 118, 24);
+  box-shadow: 3px 3px rgb(114, 113, 113, 0.4),
+    -0.2rem 0 0.2rem rgb(156, 135, 13, 0.4);
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
 .ToastForm form input ~ label {
@@ -89,7 +105,27 @@ body {
   margin: auto;
   position: relative;
   top: 40vh;
-  font-size: 3rem;
-  border-radius: 5px;
-  background-color: teal;
+  font-size: 1.2rem;
+  border-radius: 15px;
+  padding: 15px;
+
+  border: 2px solid rgb(133, 118, 24);
+  box-shadow: 3px 3px rgb(114, 113, 113, 0.4),
+    -0.2rem 0 0.2rem rgb(156, 135, 13, 0.4);
+  background: rgb(135, 134, 134);
+  background: radial-gradient(
+    circle,
+    rgba(135, 134, 134, 1) 0%,
+    rgba(193, 150, 18, 0.4374124649859944) 100%
+  );
+}
+
+.open-form-btn img {
+  height: 150px;
+  width: auto;
+}
+
+.open-form-btn p {
+  margin: 0px;
+  padding: 0px;
 }
